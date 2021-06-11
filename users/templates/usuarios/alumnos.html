@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registrar alimno{% endblock %}
+
+{% block content %}
+
+
+
+<body>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-8 col-sm-6">
+               <!--titulos -->
+            <h1 style="color: rgb(47, 83, 47);">Alumnos Registrados</h1>
+            <p>
+                Bienvenido <b>{{request.user.username}}</b>  
+            </p>
+          </div>
+        
+      
+          <!-- Force next columns to break to new line -->
+          <div class="w-100"></div>
+        
+      
+          <div class="col-8 col-sm-6">
+
+ <!-- Esta es la tabla de alumnos -->
+
+ <table class="table table-bordered table-striped scrol display  "  id="example" >
+    <thead class="table-dark">
+        <tr >
+         <th>Matricula</th>
+         <th>Nombre</th>
+         <th>Apellido Paterno</th>
+         <th>Apellido Materno</th>
+         <th>Correo</th>
+         <th>Telefono</th>
+         <th>Tipo de periodo</th>
+         <th>Carrera</th>
+         <th>Opciones</th>
+         <th>Estado</th>
+         
+        </tr>
+    </thead>
+    <!--For para los datos en la tabla--> 
+    <tbody>
+
+        {% for Alumno in Alumnos %}
+            
+        <tr>
+            <td>{{Alumno.Matricula}}</td> 
+
+            <td>{{Alumno.Nombre}}</td>
+
+            <td>{{Alumno.ApellidoPater}}</td>
+
+            <td>{{Alumno.ApellidoMater}}</td>
+            <td>{{Alumno.Correo}}</td>
+            <td>{{Alumno.Telefono}}</td>
+            <td>{{Alumno.TipoPeriodo}}</td>    
+               
+            <td>
+            </td>
+            <td>
+                <a href="{% url 'editAlumno' Alumno.pk %}"><button class="btn btn-primary" type="submit" style="font-size: 15px;">Editar</button></a>
+           
+            </td>
+            <td></td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+ </table>
+
+</body>
+
+
+</html>
+
+
+{% endblock %}

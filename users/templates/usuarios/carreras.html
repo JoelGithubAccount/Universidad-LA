@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Carreras{% endblock title %}</title>
+</head>
+<body>
+    {% block body %}
+    <h1>Carreras</h1>
+    <a href="/añadirCarrera">Añadir Carrera</a>
+    <!-- Esta es la tabla de carreras -->
+    
+    <table class="default">
+        <thead>
+            <tr>
+             <th>Nombre</th>
+             <th>Cuatrimestral</th>
+             <th>Num. Cuatrimestres</th>
+             <th>Semestral</th>
+             <th>Num. de Semestres</th>
+            </tr>
+        </thead>
+        <!--For para los datos en la tabla-->
+        <tbody>
+            {% for Carrera in Carreras %}
+            
+            <tr>
+                <td>{{Carrera.Nombre}}</td>
+                {% if Carrera.Cuatrimestral == True %}
+                <td>Si</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+                <td>{{Carrera.NumCuatrimestres}}</td>
+                {% if Carrera.Semestral == True %}
+                <td>Si</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+                <td>{{Carrera.NumSemestres}}</td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    {% endblock body %}
+</body>
+</html>

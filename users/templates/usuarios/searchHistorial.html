@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Visualizacion de Historial{% endblock %}
+
+{% block content %}
+<body>
+    <div style="padding: 30px 60px;">
+
+  
+    <h1 style="color: rgb(47, 83, 47);">Visualizacion de Historial </h1>
+    <br>
+
+    {% block searchHistorial %}
+    <form method='POST'>
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" >Buscar</button>
+    </form>
+    </div>
+    {% endblock searchHistorial %}
+</body>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registrar alimno{% endblock %}
+
+{% block content %}
+<div style="padding: 30px 60px;"> 
+    <h1>Buscar historial de pagos</h1>
+<form method='POST'>
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" class="btn btn-primary" >Buscar</button>
+</form>
+{% if validacion == True %}
+    {% for Pago in Pagos %}
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+        <table class="table table-bordered table-striped scrol display">
+            <thead class="table-dark">
+                <tr>
+                    <th>Matric Alumno</th>
+                    <th>Pago</th>
+                    <th>Monto Total</th>
+                    <th>Abonado</th>
+                    <th>Resto</th>
+                    <th>Fecha del Pago</th>
+                    <th>Fecha Limite</th>
+                    <th>Beca</th>
+                    <th>Cargo</th>
+                    <th>Liquidado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{Pago.Historial}}</td>
+                    <td>{{Pago.Nombre}}</td>
+                    <td>{{Pago.MontoTotal}}</td>
+                    <td>{{Pago.Abono}}</td>
+                    <td>{{Pago.Resto}}</td>
+                    <td>{{Pago.FechaPago}}</td>
+                    <td>{{Pago.FechaLimite}}</td>
+                    <td>{{Pago.Beca}}</td>
+                    <td>{{Pago.Cargo}}</td>
+                    <td>{{Pago.liquidado}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    {% endfor %}
+    
+{% endif %}
+
+
+{% endblock %}

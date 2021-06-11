@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registrar alimno{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center; color:rgb(47, 83, 47);"> Añadir Carreras</h1>
+
+
+
+<!-- tabla-->
+<div style="padding: 20px 20px"> 
+<table class="table table-bordered table-striped scrol display  "  id="example" >
+    <thead class="table-dark">
+        <tr>
+         <th>Nombre</th>
+         <th>Cuatrimestral</th>
+         <th>Num. Cuatrimestres</th> 
+         <th>Semestral</th>
+         <th>Num. de Semestres</th>
+         <th>Opciones</th>
+        </tr>
+    </thead>
+    <!--For para los datos en la tabla-->
+    <tbody>
+        {% for Carrera in Carreras %}
+        
+        <tr>
+            <td>{{Carrera.Nombre}}</td>
+            {% if Carrera.Cuatrimestral == True %}
+            <td>Si</td>
+            {% else %}
+            <td>No</td>
+            {% endif %}
+            <td>{{Carrera.NumCuatrimestres}}</td>
+            {% if Carrera.Semestral == True %}
+            <td>Si</td>
+            {% else %}
+            <td>No</td>
+            {% endif %}
+            <td>{{Carrera.NumSemestres}}</td>
+
+            <td>
+            <a href="{% url 'Editar_Carreras' Carrera.pk %}"><button class="btn btn-primary" type="submit" style="font-size: 15px;">Editar</button></a> 
+            <a href="{% url 'eliminarCarrera' Carrera.pk %}"><button class="btn btn-danger" type="submit" onclick="eliminar()" style="font-size: 15px;" >Eliminar</button></a> 
+            </td>
+        
+         
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+<!-- solicitar datoss-->
+    <form method="post" style="margin-left: 20px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button  class="btn btn-primary">Añadir Carrera o  editar</button>
+
+
+
+        
+
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registrar alimno{% endblock %}
+
+{% block content %}
+
+<body>
+    <div style="padding: 30px 60px;">
+
+  
+    <h1>Creacion de Historial </h1>
+    <h2> Matricula del Alumno: {{matricula}} </h2>
+        <form method = 'POST'>
+            <Table>
+            {% csrf_token %}
+            {{form}}
+            </Table>
+            <button type = "submit" class="btn btn-primary" >añadir</button>
+            
+        </form>
+        </div>
+
+        
+</body>
+</html>
+
+{% endblock %}

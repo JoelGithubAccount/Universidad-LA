@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registrar alumno{% endblock %}
+
+{% block content %}
+<body>
+    <div style="padding: 30px 60px;">
+
+    <h1 style="color: rgb(47, 83, 47);">Añadir pagos</h1>
+    <form method='POST'>
+        <table>
+            {% csrf_token %}
+            {{form.as_table}}
+        </table>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+</body>
+
+{% endblock %}

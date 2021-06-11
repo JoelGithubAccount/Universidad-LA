@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Visualizacion de Historial{% endblock %}
+
+{% block content %}
+<body>
+    <div style="padding: 30px 60px"> 
+    <h1 style="color: rgb(47, 83, 47);">Visualizacion de Historial </h1>
+    
+   
+    <P></P>
+    <P></P>
+    <P></P>
+        <table class="table table-bordered table-striped scrol display">
+            <thead class="table-dark">
+                <th> Matric Alumno </th>
+                <th>    Carrera    </th>
+                <th> Perido Actual </th>
+                <th>     Grupo     </th>
+                <th>  Fecha Inicio </th>
+                <th>  Fecha Final  </th>
+                <th> Registro Pago </th>
+            </thead>
+            {% for historial in Historiales  %}
+            <tbody>
+                
+                <td> {{historial.Alumno}} </td>
+                <td> {{historial.Carrera}} </td>
+                <td> {{historial.PeriodoAct}} </td>
+                <td> {{historial.Grupo}} </td>
+                <td> {{historial.FechaInicio}} </td>
+                <td> {{historial.FechaFinal}} </td>
+                <td></td>
+              
+            </tbody>
+            {% endfor %}
+        </table>
+        <P></P>
+        <P></P>
+        <P></P>
+    </div>
+   
+
+</body>
+{% endblock %}

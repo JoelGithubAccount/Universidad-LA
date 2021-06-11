@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css-->
+    <link href="{% static 'css\base.css' %}" rel="stylesheet">
+      <!-- Bootstrap -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Fuentes -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+    href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <!--buscador-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
+    <!-- animated css-->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+
+
+
+    <title>Inicio de sesión</title>
+    <title>Document</title>
+</head>
+<body>
+    
+ 
+    <div class="header2 col-md-12">
+        <div class="container">
+            <div class="row ">
+                <div class="col-4">
+                   <a href="#"></a> <img class="imagen-logo" onclick="inicio()" src="{% static 'img/UA.png' %}" alt=""></a>
+                </div>
+                <div class="col-1 offset-md-7">
+                     <!--Redireccionamiento a cerrar sesion-->
+                   <p><i id="icon" class="fas fa-sign-out-alt" onclick="salir()"></i></p>     
+                </div>
+              </div>
+        </div>
+    </div>
+
+   
+    <!-- Barra de la izquierda -->
+
+    <div class="d-flex">
+        <div id="sidebar-container" >
+            <div class="logo" style="margin-left: 50px;">
+                <h2 style="color: rgb(124, 180, 124);">Menu</h2>
+            </div>
+            <div class="menu" >
+                <a href="{% url 'addAlumno' %}" class="d-block text-light p-3 lead " id="enlace"><i class="fas fa-user-plus mr-2 "  ></i>Añadir Alumno</a>
+                <a href="{% url 'añadirCarrera' %}" class="d-block text-light p-3 lead " id="enlace"><i class="fas fa-folder-plus mr-2 "></i>Añadir carrera</a>
+                <a href="{% url 'searchHistorial' %}" class="d-block text-light p-3 lead " id="enlace"><i class="fas fa-search mr-2"></i>Busqueda de Historiales</a>
+                <a href="{% url 'addPagos' %}" class="d-block text-light p-3 lead " id="enlace"><i class="fas fa-plus-circle mr-2"></i>Agregar Pago</a>
+                <a href="{% url 'searchPagos' %}" class="d-block text-light p-3 lead " id="enlace"><i class="fas fa-history mr-2"></i>Buscar Historial de Pagos</a>
+                <a href="{% url 'PagoAdicional' %}" class="d-block text-light p-3 lead " id="enlace"><i class="fas fa-plus-circle mr-2"></i>Pago Adicional</a>
+
+            </div>
+        </div>
+
+        <div class="fondo">
+            <img src="{% static 'img/fondo-.jpg' %}" alt="">
+        </div>
+    
+       
+
+
+        <div id="div1"> 
+
+      
+        {% load static %}
+        {% block content %} {% endblock %}
+
+        
+         </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
+
+<script>
+let temp = $("#btn1").clone();
+$("#btn1").click(function(){
+    $("#btn1").after(temp);
+});
+
+$(document).ready(function(){
+    var table = $('#example').DataTable({
+       orderCellsTop: true,
+       fixedHeader: true 
+    });
+
+    
+
+    $('#example thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text(); //es el nombre de la columna
+        $(this).html( '<input type="text" placeholder="Buscar...'+title+'" />' );
+ 
+    
+    } );   
+});
+
+</script>
+    <!-- Ventanas emergentes-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+   <script src="{% static 'js\sweetalert.js' %}"></script>
+
+
+
+</html>

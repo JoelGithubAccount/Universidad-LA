@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<style>
+    .img-invoice {
+        width: 50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    #invoice thead tr th {
+        text-align: left;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-top: 4px;
+    }
+
+    #invoice thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #invoice tbody tr {
+        padding: 0;
+    }
+    
+
+    .text-center{
+        text-align: center;
+    }
+</style>
+<body>
+
+<p class="head">
+    {{ comp.name|upper }}<br>
+    {{ comp.ruc }}<br>
+    {{ comp.address|upper }}
+</p>
+<p> {% for Pago in Pagos %}
+    <b>FACTURA:</b> {{ Pago.pk }}<br>
+    <b>Fecha de realización del pago:</b> {{ Pago.FechaPago }}<br>
+    {% endfor %}
+    <b>Alumno:</b> {{ Alumno.Nombre|upper }}<br>
+    <b>Apellido Paterno:</b> {{ Alumno.ApellidoPater|upper }}<br>
+    <b>Apellido Materno:</b> {{ Alumno.ApellidoMater|upper }}<br>
+    <b>Matricula:</b> {{ Alumno.Matricula }}<br>
+</p>
+
+
+<table id="invoice">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th ></th>
+        <th style="width: 15% ">DETALLES</th>
+    </tr>
+    </thead>
+    {% for Pago in Pagos %}
+    <tbody>
+    <tr style="border-top: 1px solid black; padding-top: 4px;">
+        <td colspan="4"><b>Pago</b></td>
+        <td style="text-align: right">{{ Pago.Nombre }}</td>
+    </tr>
+    <tr style="padding-top: 0px;">
+        <td colspan="4"><b>Monto total</b></td>
+        <td style="text-align: right">${{ Pago.MontoTotal }}</td>
+    </tr>
+    <tr style="padding-top: 0px;">
+        <td colspan="4"><b>Abono</b></td>
+        <td style="text-align: right">${{ Pago.Abono }}</td>
+    </tr>
+    <tr style="padding-top: 0px;">
+        <td colspan="4"><b>Resto</b></td>
+        <td style="text-align: right">${{ Pago.Resto }}</td>
+    </tr>
+    <tr style="padding-top: 0px;">
+        <td colspan="4"><b>Fecha Limite</b></td>
+        <td style="text-align: right">{{ Pago.FechaLimite }}</td>
+    </tr>
+    <tr style="padding-top: 0px;">
+        <td colspan="4"><b>Beca</b></td>
+        <td style="text-align: right">%{{ Pago.Beca }}</td>
+    </tr>
+    </tbody>
+    <tr style="padding-top: 0px;">
+        <td colspan="4"><b>Recargo</b></td>
+        <td style="text-align: right">${{ Pago.Cargo }}</td>
+    </tr>
+    <tr style="border-top: 1px solid black; padding-top: 4px;">
+        <td colspan="4"><b>liquidado</b></td>
+        <td style="text-align: right">{% if Pago.liquidado == False %}
+        <p>No Liquidado</p>
+        {% elif Pago.liquidado == True%}
+        <p>Liquidado</p>
+        {% endif %}
+        
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table style="margin-top: 250px;">
+    <thead>
+    <tr>
+        <th>Derechos Reservados</th>
+    </tr>
+    </thead>
+</table>
+</body>
+</html>
